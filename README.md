@@ -20,7 +20,7 @@ TinyPilot's style guides mostly inherit from other established style guides and 
 
 ### Shellcheck
 
-All repositories with
+All repositories with shell scripts should enable shellcheck to run automatically in CI. See [the `check_bash` job](https://github.com/tiny-pilot/tinypilot/blob/master/.circleci/config.yml) in tiny-pilot/tinypilot for an example.
 
 ### Options
 

@@ -55,6 +55,17 @@ Variable names should be all uppercase.
 WELCOME_MESSAGE="Hello, world!"
 ```
 
+### Error messages
+
+* Print error messages to stderr.
+* Error messages don't have any prefixes like "ERROR:" or "WARNING:".
+* Use sentence casing to capitalize error messages.
+* Omit trailing punctuation on error messages.
+
+```bash
+echo 'Mount mode must be either FLASH or CDROM' >&2
+```
+
 ## JavaScript
 
 TinyPilot doesn't have well-defined conventions for JavaScript. We are "loosely inspired" by [Google's JavaScript style guide](https://google.github.io/styleguide/jsguide.html), but don't observe it strictly.

@@ -20,14 +20,14 @@ TinyPilot's style guides mostly inherit from other established style guides and 
 
 ### Shellcheck
 
-All repositories with shell scripts should enable shellcheck to run automatically in CI. See [the `check_bash` job](https://github.com/tiny-pilot/tinypilot/blob/master/.circleci/config.yml) in tiny-pilot/tinypilot for an example.
+All repositories with shell scripts should enable shellcheck to run automatically in CI. See [the `check_bash` job](https://github.com/tiny-pilot/tinypilot/blob/master/.circleci/config.yml) in `tiny-pilot/tinypilot` for an example.
 
 ### Options
 
 All bash scripts should default to these options unless there's a strong need to exclude any of them.
 
 ```bash
-# Exit build script on first failure.
+# Exit on first failure.
 set -e
 
 # Echo commands to stdout.
@@ -53,6 +53,12 @@ Variable names should be all uppercase.
 
 ```bash
 WELCOME_MESSAGE="Hello, world!"
+```
+
+```bash
+for URL in "${URLS[@]}"; do
+  wget "${URL}"
+done
 ```
 
 ### Error messages

@@ -4,7 +4,7 @@ This page defines TinyPilot's coding conventions for various programming languag
 
 ## General
 
-TinyPilot's style guides mostly inherit from other established style guides and make changes where we've felt the parent guide lacks specificity or makes a choice that's inappropriate for TinyPilot's work.
+TinyPilot's style guides mostly inherit from other established style guides and make changes where we've felt the parent guide lacks specificity or makes a choice that's poorly suited for TinyPilot's work.
 
 ## Python
 

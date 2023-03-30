@@ -6,6 +6,32 @@ This page defines TinyPilot's coding conventions for various programming languag
 
 TinyPilot's style guides mostly inherit from other established style guides and make changes where we've felt the parent guide lacks specificity or makes a choice that's poorly suited for TinyPilot's work.
 
+## Pull requests
+
+Pull requests (PRs)
+
+Focus on the why rather than the how.
+
+Should introduce the reader to
+
+If there were implementation decisions, include them.
+
+### Titles
+
+* Aim for fewer than 80 characters
+  * This is a soft limit, but it's better to be succinct
+* Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling")
+* Use sentence casing.
+* Omit trailing punctuation.
+* Omit prefixes like "(chore)" or "(fix)".
+
+### Descriptions
+
+Pull request descriptions
+
+The PR description can introduce the reader . The PR description is a description of the *change* rather than the code. If there's context the reader needs to understand the code, the code itself should provide that context. After the code is merged, it should make sense to people who haven't read the pull request description.
+
+
 ## Python
 
 - Base Guide: [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)

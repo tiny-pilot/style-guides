@@ -31,6 +31,9 @@ Pull request descriptions
 
 The PR description can introduce the reader . The PR description is a description of the *change* rather than the code. If there's context the reader needs to understand the code, the code itself should provide that context. After the code is merged, it should make sense to people who haven't read the pull request description.
 
+Can omit when trivial.
+
+Include "Fixes XX"
 
 ## Python
 

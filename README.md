@@ -35,6 +35,10 @@ Can omit when trivial.
 
 Include "Fixes XX"
 
+The reader should understand everything in the PR description. If we're linking to external resources, quote the relevant parts (the external links could disappear). If we're linking to a bug, don't force the reader to read the full bug. Summarize what they need to know. Link to specific headers in external docs.
+
+Revise PR descriptions to match implementation.
+
 ## Python
 
 - Base Guide: [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)

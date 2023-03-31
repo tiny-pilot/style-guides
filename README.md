@@ -20,6 +20,7 @@ If there were implementation decisions, include them.
 
 * Aim for fewer than 80 characters
   * This is a soft limit, but it's better to be succinct
+  * In some views (including on Github), exceeding 80 characters screws up the PR link
 * Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling")
 * Use sentence casing.
 * Omit trailing punctuation.

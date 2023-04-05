@@ -61,6 +61,28 @@ for URL in "${URLS[@]}"; do
 done
 ```
 
+### Command-line flags
+
+If a bash script calls another application that accepts command-line flags, use long flag names where available.
+
+```bash
+# BAD - uses short flag names
+grep -i -o -m 2 -r '<span.*</span>' ./
+
+# GOOD - uses long flag names
+grep \
+  --ignore-case \
+  --only-matching \
+  --max-count=2 \
+  --recursive \
+  '<span.*</span>' \
+  ./
+```
+
+Make exceptions for flags where the short flags are extremely common and the long names are used rarely:
+
+* `mkdir -p`
+
 ### Error messages
 
 * Print error messages to stderr.

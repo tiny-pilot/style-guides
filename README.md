@@ -16,7 +16,7 @@ The pull request (PR) title should summarize the change to make it easy for othe
   * This is a soft limit, but it's better to be succinct.
   * In some views (including on Github), exceeding 80 characters screws up the PR link.
 * Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling").
-* Use sentence casing ("Refactor input handling" rather than "Refactor Input Handling").
+* Use sentence casing ("Refactor input handling") rather than titel casing ("Refactor Input Handling").
 * Omit trailing punctuation.
 * Omit prefixes like "(chore)" or "(fix)".
 * Omit Markdown formatting.
@@ -24,11 +24,15 @@ The pull request (PR) title should summarize the change to make it easy for othe
 
 ### Descriptions
 
-The pull request description should introduce the reader to the change and provide them with the context they need to review the change. Write the pull request so that it makes sense to anyone on the team even if you have a particular reviewer in mind who has additional context. Other people might want to read the PR, and you might forget the context in the future if you look back on it.
+The pull request description should introduce the reader to the change and provide them with the context they need to review the change.
+
+Write the pull request description so that it makes sense to anyone on the team, even if you have a particular reviewer in mind who has additional context. Other people might want to read the PR, and you might forget the context in the future if you look back on it.
 
 #### What to include
 
-Link to external resources when appropriate, but the reader should be able to understand everything in the PR description without clicking external links. If you're linking to a bug, summarize the relevant details of the bug. If you're linking to external documentation, quote the relevant section and link back to the original (linking to the specific header if possible).
+The PR description should give a reviewer everything they need to review the PR effectively.
+
+The reviewer should be able to review the PR without clicking external links in the PR description. The description should quote and summarize relevant details from external resources and link to them so that the reviewer can explore further if they choose. If you're linking to a bug, summarize the relevant details of the bug. If you're linking to external documentation, quote the relevant section and link back to the original (linking to the specific header if possible).
 
 If you made design choices in the PR, explain why you chose a particular implementation over other possible candidates.
 
@@ -40,7 +44,7 @@ The PR description is a description of the *change* rather than the code. It sho
 
 If there's context the reader needs to understand the code, the code itself should provide that context either through naming or code comments. After the code is merged, the code needs to make sense to people who haven't read the pull request description.
 
-Example bad description:
+##### Example bad description
 
 >**Move user.js**
 >
@@ -48,7 +52,7 @@ Example bad description:
 
 This is a poor description because it doesn't give the reader any information about the change beyond what they'd see in the diff.
 
-Example good description:
+##### Example good description
 
 >**Move user.js to src/controllers/auth**
 >
@@ -60,7 +64,7 @@ This is a better PR description because it explains the "why" behind the change.
 
 #### Cross-referencing issues
 
-If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. Doing this lets Github auto-close the associated issue when we merge the PR.
+If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. The `Fixes #XXX` syntax tells Github to auto-close the associated issue when we merge the PR.
 
 If the PR is related to an issue but doesn't fix it, add a line that says `Related #XXX` so that Github cross-references the PR from the associated bug.
 

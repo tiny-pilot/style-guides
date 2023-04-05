@@ -8,25 +8,25 @@ TinyPilot's style guides mostly inherit from other established style guides and 
 
 ## Github pull requests
 
-### Titles
+### Pull request titles
 
 The pull request (PR) title should summarize the change to make it easy for other developers to quickly scan through the change history for the repo or a file/folder.
 
 * Aim for fewer than 80 characters.
   * This is a soft limit, but it's better to be succinct.
   * In some views (including on Github), exceeding 80 characters screws up the PR link.
-* Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling").
-* Use sentence casing ("Refactor input handling") rather than titel casing ("Refactor Input Handling").
+* Use imperative mood ("**Refactor** input handling") rather than descriptive ("**Refactors** input handling").
+* Use sentence casing ("Refactor input handling") rather than title casing ("Refactor Input Handling").
 * Omit trailing punctuation.
 * Omit prefixes like "(chore)" or "(fix)".
-* Omit Markdown formatting.
+* Omit Markdown formatting characters such as backticks.
   * Github renders Markdown in PR titles, but not all git clients do.
 
-### Descriptions
+### Pull request descriptions
 
-The pull request description should introduce the reader to the change and provide them with the context they need to review the change.
+The PR description should introduce the reader to the change and provide them with the context they need to review it.
 
-Write the pull request description so that it makes sense to anyone on the team, even if you have a particular reviewer in mind who has additional context. Other people might want to read the PR, and you might forget the context in the future if you look back on it.
+Write the pull request description so that it makes sense to anyone on the team, even if you have a particular reviewer in mind. Other people might want to read the PR that don't have the reviewer's context, and you yourself will eventually forget the extra context you had when you wrote the code.
 
 #### What to include
 
@@ -36,13 +36,13 @@ The reviewer should be able to review the PR without clicking external links in 
 
 If you made design choices in the PR, explain why you chose a particular implementation over other possible candidates.
 
-For very trivial PRs, the description is optional, but it's usually helpful to include a description.
+For trivial PRs, the description is optional, but it's usually helpful to include a description.
 
 #### Focus on the "why" rather than the "how"
 
-The PR description is a description of the *change* rather than the code. It should answer the question, "Why are we making this change right now?"
+The PR description should focus on the *change* rather than the code. It should answer the question, "Why are we making this change right now?"
 
-If there's context the reader needs to understand the code, the code itself should provide that context either through naming or code comments. After the code is merged, the code needs to make sense to people who haven't read the pull request description.
+If there's context the reader needs to understand the code, the code itself should provide that context either through naming, structure, or code comments. After the code is merged, the code needs to make sense to people who haven't read the pull request description.
 
 ##### Example bad description
 
@@ -60,23 +60,23 @@ This is a poor description because it doesn't give the reader any information ab
 >
 >We did a lot of restructing as part of the 4.2.x release, so now all of user.js’s clients live in `src/controllers/auth`, so this change moves `user.js` closer to the majority of its clients.
 
-This is a better PR description because it explains the "why" behind the change. The reader has context to understand why this change is happening.
+This is a better PR description because it explains the "why" behind the change.
 
 #### Cross-referencing issues
 
-If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. The `Fixes #XXX` syntax tells Github to auto-close the associated issue when we merge the PR.
+If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. The `Fixes #XXX` has special meaning within Github, as merging the PR will auto-close the associated issue.
 
 If the PR is related to an issue but doesn't fix it, add a line that says `Related #XXX` so that Github cross-references the PR from the associated bug.
 
-#### Revise to match design changes
+#### Revise the description to match the implementation
 
-Sometimes the code review process causes changes in the code that make your original PR description obsolete. Remember to update your PR description to match the state of your code.
+Sometimes the code review process changes the code and makes the original PR description obsolete. Remember to update your PR description to match the state of your code.
 
 ### Drafts vs. non-drafts
 
 Mark the PR as a "draft" when it's not ready to be merged in. You can request a review on a draft PR, but the implication is that you're seeking only preliminary, high-level feedback.
 
-Remove the "draft" state when you feel the code is ready to be merged. Your reviewer will likely have feedback, but removing the "draft" state means that you've made the code as good as you can make it, and you'd be content merging it in if your reviewer has no notes.
+Remove the "draft" state when you feel the code is ready to be merged. Your reviewer will likely have feedback, but removing the "draft" state means that you've made the code as good as you can make it, and you'd be comfortable merging it in if your reviewer has no notes.
 
 ## Python
 

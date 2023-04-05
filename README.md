@@ -76,7 +76,7 @@ Sometimes the code review process changes the code and makes the original PR des
 
 Mark the PR as a "draft" when it's not ready to be merged in. You can request a review on a draft PR, but the implication is that you're seeking only preliminary, high-level feedback.
 
-Remove the "draft" state when you feel the code is ready to be merged. Your reviewer will likely have feedback, but removing the "draft" state means that you've made the code as good as you can make it, and you'd be comfortable merging it in if your reviewer has no notes.
+Click the PR's "Ready for Review" button on a draft PR when you feel the code is ready to be merged. Your reviewer will likely have feedback, but removing the "draft" state means that you've made the code as good as you can make it, and you'd be comfortable merging it in if your reviewer has no notes.
 
 ## Python
 

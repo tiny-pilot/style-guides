@@ -6,39 +6,67 @@ This page defines TinyPilot's coding conventions for various programming languag
 
 TinyPilot's style guides mostly inherit from other established style guides and make changes where we've felt the parent guide lacks specificity or makes a choice that's poorly suited for TinyPilot's work.
 
-## Pull requests
-
-Pull requests (PRs)
-
-Focus on the why rather than the how.
-
-Should introduce the reader to
-
-If there were implementation decisions, include them.
+## Github pull requests
 
 ### Titles
 
-* Aim for fewer than 80 characters
-  * This is a soft limit, but it's better to be succinct
-  * In some views (including on Github), exceeding 80 characters screws up the PR link
-* Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling")
-* Use sentence casing.
+The pull request (PR) title should summarize the change to make it easy for other developers to quickly scan through the change history for the repo or a file/folder.
+
+* Aim for fewer than 80 characters.
+  * This is a soft limit, but it's better to be succinct.
+  * In some views (including on Github), exceeding 80 characters screws up the PR link.
+* Use imperative mood ("Refactor input handling") rather than descriptive ("Refactors input handling").
+* Use sentence casing ("Refactor input handling" rather than "Refactor Input Handling").
 * Omit trailing punctuation.
 * Omit prefixes like "(chore)" or "(fix)".
+* Omit Markdown formatting.
+  * Github renders Markdown in PR titles, but not all git clients do.
 
 ### Descriptions
 
-Pull request descriptions
+The pull request description should introduce the reader to the change and provide them with the context they need to review the change. Write the pull request so that it makes sense to anyone on the team even if you have a particular reviewer in mind who has additional context. Other people might want to read the PR, and you might forget the context in the future if you look back on it.
 
-The PR description can introduce the reader . The PR description is a description of the *change* rather than the code. If there's context the reader needs to understand the code, the code itself should provide that context. After the code is merged, it should make sense to people who haven't read the pull request description.
+#### What to include
 
-Can omit when trivial.
+Link to external resources when appropriate, but the reader should be able to understand everything in the PR description without clicking external links. If you're linking to a bug, summarize the relevant details of the bug. If you're linking to external documentation, quote the relevant section and link back to the original (linking to the specific header if possible).
 
-Include "Fixes XX"
+If you made design choices in the PR, explain why you chose a particular implementation over other possible candidates.
 
-The reader should understand everything in the PR description. If we're linking to external resources, quote the relevant parts (the external links could disappear). If we're linking to a bug, don't force the reader to read the full bug. Summarize what they need to know. Link to specific headers in external docs.
+For very trivial PRs, the description is optional, but it's usually helpful to include a description.
 
-Revise PR descriptions to match implementation.
+#### Focus on the "why" rather than the "how"
+
+The PR description is a description of the *change* rather than the code. It should answer the question, "Why are we making this change right now?"
+
+If there's context the reader needs to understand the code, the code itself should provide that context either through naming or code comments. After the code is merged, the code needs to make sense to people who haven't read the pull request description.
+
+Example bad description:
+
+>**Move user.js**
+>
+>This change moves user.js to the `src/controllers/auth` directory.
+
+This is a poor description because it doesn't give the reader any information about the change beyond what they'd see in the diff.
+
+Example good description:
+
+>**Move user.js to src/controllers/auth**
+>
+>When we created `user.js`, most of its callers lived in `src/lib/user`.
+>
+>We did a lot of restructing as part of the 4.2.x release, so now all of user.js’s clients live in `src/controllers/auth`, so this change moves `user.js` closer to the majority of its clients.
+
+This is a better PR description because it explains the "why" behind the change. The reader has context to understand why this change is happening.
+
+#### Cross-referencing issues
+
+If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. Doing this lets Github auto-close the associated issue when we merge the PR.
+
+If the PR is related to an issue but doesn't fix it, add a line that says `Related #XXX` so that Github cross-references the PR from the associated bug.
+
+#### Revise to match design changes
+
+Sometimes the code review process causes changes in the code that make your original PR description obsolete. Remember to update your PR description to match the state of your code.
 
 ## Python
 

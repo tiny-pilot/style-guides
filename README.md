@@ -30,7 +30,7 @@ All bash scripts should default to these options unless there's a strong need to
 # Exit on first failure.
 set -e
 
-# Echo commands to stdout.
+# Echo commands before executing them, by default to stderr.
 set -x
 
 # Exit on unset variable.

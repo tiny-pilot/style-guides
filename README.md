@@ -72,6 +72,12 @@ If the PR is related to an issue but doesn't fix it, add a line that says `Relat
 
 Sometimes the code review process causes changes in the code that make your original PR description obsolete. Remember to update your PR description to match the state of your code.
 
+### Drafts vs. non-drafts
+
+Mark the PR as a "draft" when it's not ready to be merged in. You can request a review on a draft PR, but the implication is that you're seeking only preliminary, high-level feedback.
+
+Remove the "draft" state when you feel the code is ready to be merged. Your reviewer will likely have feedback, but removing the "draft" state means that you've made the code as good as you can make it, and you'd be content merging it in if your reviewer has no notes.
+
 ## Python
 
 - Base Guide: [Google Python Style Guide](https://google.github.io/styleguide/pyguide.html)

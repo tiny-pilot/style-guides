@@ -21,6 +21,7 @@ The pull request (PR) title should summarize the change to make it easy for othe
 * Omit prefixes like "(chore)" or "(fix)".
 * Omit Markdown formatting characters such as backticks.
   * Github renders Markdown in PR titles, but not all git clients do.
+  * Use Markdown in PR descriptions because it has better cost:benefit ratio there. In the description, Markdown allows links and embedded media, whereas the most we'd want in the title is backticked titles, which isn't so useful when rendered and adds clutter for git clients that don't render Markdown.
 
 ### Pull request descriptions
 
@@ -34,7 +35,9 @@ The PR description should give a reviewer everything they need to review the PR 
 
 The reviewer should be able to review the PR without clicking external links in the PR description. The description should quote and summarize relevant details from external resources and link to them so that the reviewer can explore further if they choose. If you're linking to a bug, summarize the relevant details of the bug. If you're linking to external documentation, quote the relevant section and link back to the original (linking to the specific header if possible).
 
-If you made design choices in the PR, explain why you chose a particular implementation over other possible candidates.
+If you're changing the UI, considering including a screenshot or short video demo. Visuals should supplement a clear written description of the changes rather than substituting it.
+
+If you considered other implementation options, explain why you chose a particular implementation over other possible candidates.
 
 For trivial PRs, the description is optional, but it's usually helpful to include a description.
 
@@ -70,7 +73,9 @@ If the PR is related to an issue but doesn't fix it, add a line that says `Relat
 
 #### Revise the description to match the implementation
 
-Sometimes the code review process changes the code and makes the original PR description obsolete. Remember to update your PR description to match the state of your code.
+When we squash and merge the commit, the PR title and description become the commit message. The commit message is a permanent part of the source history, so we want it to be accurate when we merge the PR.
+
+If changes during the code review process make the original PR description obsolete, remember to update the PR description to match the code.
 
 ### Drafts vs. non-drafts
 

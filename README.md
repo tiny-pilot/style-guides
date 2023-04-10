@@ -66,10 +66,10 @@ done
 If a bash script calls another application that accepts command-line flags, use long flag names where available.
 
 ```bash
-# BAD - uses short flag names
+# BAD - uses short flag names.
 grep -i -o -m 2 -r '<span.*</span>' ./
 
-# GOOD - uses long flag names
+# GOOD - uses long flag names.
 grep \
   --ignore-case \
   --only-matching \

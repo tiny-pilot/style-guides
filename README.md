@@ -67,7 +67,7 @@ This is a better PR description because it explains the "why" behind the change.
 
 #### Cross-referencing issues
 
-If the PR resolves a bug, include a line after the prose description that says `Fixes #XXX` where `XXX` is the number of the Github issue it resolves. The `Fixes #XXX` has special meaning within Github, as merging the PR will auto-close the associated issue.
+If the PR resolves a Github issue, make the first line of the description `Resolves #XXX`, where `XXX` is the number of the Github issue it resolves. The `Resolves #XXX` [has special meaning](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) within Github, as merging the PR will auto-close the associated issue.
 
 If the PR is related to an issue but doesn't fix it, add a line that says `Related #XXX` so that Github cross-references the PR from the associated bug.
 

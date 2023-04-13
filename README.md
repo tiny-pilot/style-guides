@@ -1,6 +1,8 @@
 # style-guides
 
-This page defines TinyPilot's coding conventions for various programming languages.
+This page defines TinyPilot's conventions for various programming languages.
+
+TinyPilot team members and contributors should follow these conventions when contributing to any TinyPilot-owned repository.
 
 ## General
 

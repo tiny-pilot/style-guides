@@ -140,7 +140,7 @@ for URL in "${URLS[@]}"; do
 done
 ```
 
-### Command-line flags
+### Using command-line flags
 
 If a bash script calls another application that accepts command-line flags, use long flag names where available.
 
@@ -161,6 +161,105 @@ grep \
 Make exceptions for flags where the short flags are extremely common and the long names are used rarely:
 
 * `mkdir -p`
+
+### Parsing command-line flags
+
+In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
+
+```bash
+# BAD - parses only short flag names.
+# Pros:
+# - Uses built-in `getopts` command
+# - Code is compact
+# Cons:
+# - Code is difficult read and write
+TARGET_FILE=''
+FORCE='false'
+while getopts 'hm:f' opt; do
+  case "${opt}" in
+    h)
+      echo 'Help is on its way'
+      exit
+      ;;
+    t)
+      TARGET_FILE="${OPTARG}"
+      ;;
+    f)
+      FORCE='true'
+      ;;
+    *)
+      >&2 echo 'Sorry, invalid option'
+      exit 1
+  esac
+done
+readonly TARGET_FILE
+readonly FORCE
+
+# GOOD - parses only long flag names.
+# Pros:
+# - Code is easier to read and write
+# Cons:
+# - Completely custom implementation
+# - Can't specify flag values using `=`
+#   For example:
+#     script.sh --target-file=/tmp/file
+TARGET_FILE=''
+FORCE='false'
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --help)
+      echo 'Help is on its way'
+      exit
+      ;;
+    --target-file)
+      TARGET_FILE="$2"
+      shift # For flag name.
+      shift # For flag value.
+      ;;
+    --force)
+      FORCE='true'
+      shift # For flag name.
+      ;;
+   *)
+      >&2 echo 'Sorry, invalid option'
+      exit 1
+  esac
+done
+readonly TARGET_FILE
+readonly FORCE
+
+# BEST - parses both long and short flag names.
+# Pros:
+# - Relatively little extra work to support both long and short flag names
+# Cons:
+# - Can't chain short flag names
+#   For example:
+#     script.sh -abcd
+TARGET_FILE=''
+FORCE='false'
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    -h|--help)
+      echo 'Help is on its way'
+      exit
+      ;;
+    -t|--target-file)
+      TARGET_FILE="$2"
+      shift # For flag name.
+      shift # For flag value.
+      ;;
+    -f|--force)
+      FORCE='true'
+      shift # For flag name.
+      ;;
+   *)
+      >&2 echo 'Sorry, invalid option'
+      exit 1
+  esac
+done
+readonly TARGET_FILE
+readonly FORCE
+```
 
 ### Error messages
 

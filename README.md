@@ -175,7 +175,7 @@ In the same way that we prefer to use long flag names, we also prefer to impleme
 # - Code is difficult read and write
 TARGET_FILE=''
 FORCE='false'
-while getopts 'hm:f' opt; do
+while getopts 'ht:f' opt; do
   case "${opt}" in
     h)
       echo 'Help is on its way'

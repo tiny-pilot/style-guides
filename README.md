@@ -128,16 +128,31 @@ TIMEOUT_SECONDS=5
 
 ### Variable names
 
-Variable names should be all uppercase.
+Constant variables and exported environment variables should be all uppercase.
 
 ```bash
-WELCOME_MESSAGE="Hello, world!"
+readonly WELCOME_MESSAGE='Hello, world!'
 ```
 
 ```bash
-for URL in "${URLS[@]}"; do
-  wget "${URL}"
+WELCOME_MESSAGE="$(echo 'Hello, World!')"
+readonly WELCOME_MESSAGE
+export WELCOME_MESSAGE
+```
+
+Non-constant variables, such as the ones in loops or for local function variables, should be all lowercase.
+
+```bash
+for url in "${URLS[@]}"; do
+  wget "${url}"
 done
+```
+
+```bash
+print() {
+  local message="$1"
+  echo "${message}"
+}
 ```
 
 ### Command-line flags

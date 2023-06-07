@@ -166,15 +166,24 @@ Make exceptions for flags where the short flags are extremely common and the lon
 
 In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
 
+#### BAD - using `getopts`
+Pros:
+- Uses built-in [`getopts`](https://man7.org/linux/man-pages/man1/getopts.1p.html) command
+- Can chain short flag names
+- Code is compact
+
+Cons:
+- Only supports short flag names
+- Need to learn the options syntax
+
+Example:
+
 ```bash
-# BAD - parses only short flag names.
-# Pros:
-# - Uses built-in `getopts` command
-# - Code is compact
-# Cons:
-# - Code is difficult read and write
 TARGET_FILE=''
 FORCE='false'
+# Parse command-line flags.
+# One colon indicates that the previous flag expects a required value, while
+# two colons to indicate an optional value.
 while getopts 'ht:f' opt; do
   case "${opt}" in
     h)
@@ -194,15 +203,77 @@ while getopts 'ht:f' opt; do
 done
 readonly TARGET_FILE
 readonly FORCE
+```
 
-# GOOD - parses only long flag names.
-# Pros:
-# - Code is easier to read and write
-# Cons:
-# - Completely custom implementation
-# - Can't specify flag values using `=`
-#   For example:
-#     script.sh --target-file=/tmp/file
+#### BAD - using `getopt`
+Pros:
+- Supports both short and long flag names
+- Can specify flag values using `=`
+
+Cons:
+- Uses GNU based [`getopt`](https://linux.die.net/man/1/getopt) command (i.e., not available on macOS)
+- Need to learn the options syntax
+- Performs unexpected flag matching
+  
+  For example, `script.sh -target /tmp/file` results in `TARGET_FILE=arget`.
+  This isn't an issue in the other parsing methods.
+
+Example:
+
+```bash
+# Parse command-line flags.
+# One colon indicates that the previous flag expects a required value, while
+# two colons to indicate an optional value.
+OPTIONS="$(getopt \
+  --options 'ht:f' \
+  --longoptions 'help,target-file:,force' \
+  -- \
+  "$@")"
+
+# Process command-line flags.
+eval set -- "${OPTIONS}"
+
+TARGET_FILE=''
+FORCE='false'
+while true; do
+  case "$1" in
+    -h|--help)
+      echo 'Help is on its way'
+      exit
+      ;;
+    -t|--target-file)
+      TARGET_FILE="$2"
+      shift # For flag name.
+      shift # For flag value.
+      ;;
+    -f|--force)
+      FORCE='true'
+      shift # For flag name.
+      ;;
+    --)
+      shift
+      break
+      ;;
+    *)
+      >&2 echo 'Sorry, invalid option'
+      exit 1
+  esac
+done
+readonly TARGET_FILE
+readonly FORCE
+```
+
+#### GOOD - using custom implementation #1
+
+Pros:
+- Code is easier to read and write
+
+Cons:
+- Completely custom implementation
+- No built-in error handling
+- Can't specify flag values using `=`
+
+```bash
 TARGET_FILE=''
 FORCE='false'
 while [[ "$#" -gt 0 ]]; do
@@ -227,14 +298,18 @@ while [[ "$#" -gt 0 ]]; do
 done
 readonly TARGET_FILE
 readonly FORCE
+```
 
-# BEST - parses both long and short flag names.
-# Pros:
-# - Relatively little extra work to support both long and short flag names
-# Cons:
-# - Can't chain short flag names
-#   For example:
-#     script.sh -abcd
+#### OKAY - using custom implementation #2
+Pros:
+- Requires little extra work to support both long and short flag names
+
+Cons:
+- Can't chain short flag names
+
+Example:
+
+```bash
 TARGET_FILE=''
 FORCE='false'
 while [[ "$#" -gt 0 ]]; do

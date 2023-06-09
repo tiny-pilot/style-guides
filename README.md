@@ -140,19 +140,19 @@ readonly WELCOME_MESSAGE
 export WELCOME_MESSAGE
 ```
 
-Non-constant variables, such as the ones in loops or for local function variables, should be all lowercase.
+```bash
+print() {
+  local -r MESSAGE=$1
+  echo "${MESSAGE}"
+}
+```
+
+Non-constant variables, such as the ones in loops, should be lowercase.
 
 ```bash
 for value in 1 2 3; do
   echo "Hello "${value}" times"
 done
-```
-
-```bash
-print() {
-  local message="$1"
-  echo "${message}"
-}
 ```
 
 ### Command-line flags

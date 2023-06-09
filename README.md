@@ -143,8 +143,8 @@ export WELCOME_MESSAGE
 Non-constant variables, such as the ones in loops or for local function variables, should be all lowercase.
 
 ```bash
-for url in "${URLS[@]}"; do
-  wget "${url}"
+for value in 1 2 3; do
+  echo "Hello "${value}" times"
 done
 ```
 

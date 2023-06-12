@@ -128,7 +128,7 @@ TIMEOUT_SECONDS=5
 
 ### Variable names
 
-Constant variables and exported environment variables should be all uppercase.
+Constant variables and exported environment variables should be uppercase.
 
 ```bash
 readonly WELCOME_MESSAGE='Hello, world!'

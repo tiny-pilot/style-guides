@@ -151,7 +151,7 @@ Non-constant variables, such as the ones in loops, should be lowercase.
 
 ```bash
 for value in 1 2 3; do
-  echo "Hello "${value}" times"
+  echo "Hello ${value} times"
 done
 ```
 

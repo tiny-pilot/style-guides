@@ -155,7 +155,7 @@ for value in 1 2 3; do
 done
 ```
 
-### Command-line flags
+### Using command-line flags
 
 If a bash script calls another application that accepts command-line flags, use long flag names where available.
 
@@ -176,6 +176,55 @@ grep \
 Make exceptions for flags where the short flags are extremely common and the long names are used rarely:
 
 * `mkdir -p`
+
+### Parsing command-line flags
+
+In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
+
+```bash
+print_help() {
+  cat <<EOF
+Usage: ${0##*/} [--help] [--force] --target-file TARGET_FILE
+Creates an empty file at the target path.
+  --help                      Display this help and exit.
+  --force                     Overwrite the target file, if it already exists.
+  --target-file TARGET_FILE   The target path of the empty file.
+EOF
+}
+
+TARGET_FILE=''
+FORCE='false'
+while [[ "$#" -gt 0 ]]; do
+  case "$1" in
+    --help)
+      print_help
+      exit
+      ;;
+    --target-file)
+      TARGET_FILE="$2"
+      shift # For flag name.
+      shift # For flag value.
+      ;;
+    --force)
+      FORCE='true'
+      shift # For flag name.
+      ;;
+   *)
+      >&2 print_help
+      exit 1
+  esac
+done
+readonly TARGET_FILE
+readonly FORCE
+
+if [[ -z "${TARGET_FILE}" ]]; then
+  >&2 echo 'Missing parameter: TARGET_FILE'
+  >&2 print_help
+  exit 1
+fi
+```
+
+There's no need to implement short flag names because our scripts are either being called by other scripts, internally, or users are copy/pasting commands from examples we've given them. Either way, we prefer to see long flag names being used.
 
 ### Error messages
 

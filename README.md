@@ -155,6 +155,19 @@ for value in 1 2 3; do
 done
 ```
 
+### Here documents
+
+Here-documents should use `EOF` as the delimiting identifier label.
+
+```bash
+sudo tee --append /etc/janus/janus.jcfg << EOF
+nat: {
+  stun_server = "${STUN_SERVER}"
+  stun_port = ${STUN_PORT}
+}
+EOF
+```
+
 ### Using command-line flags
 
 If a bash script calls another application that accepts command-line flags, use long flag names where available.

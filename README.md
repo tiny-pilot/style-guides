@@ -155,6 +155,8 @@ for value in 1 2 3; do
 done
 ```
 
+### Here documents
+
 Here-documents should use `EOF` as the delimiting identifier label.
 
 ```bash

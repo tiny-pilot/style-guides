@@ -126,7 +126,7 @@ Comments begin with a capital letter and end with trailing punctuation.
 TIMEOUT_SECONDS=5
 ```
 
-### Casing of variable names
+### Variable name casing
 
 Constant variables and exported environment variables should be uppercase.
 

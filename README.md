@@ -126,7 +126,7 @@ Comments begin with a capital letter and end with trailing punctuation.
 TIMEOUT_SECONDS=5
 ```
 
-### Variable names
+### Variable name casing
 
 Constant variables and exported environment variables should be uppercase.
 
@@ -154,6 +154,19 @@ for value in 1 2 3; do
   echo "Hello ${value} times"
 done
 ```
+
+### Declaration of constant variables
+
+Constant variables should be declared just before their first usage. We follow the same rules as with declaring regular (non-constant) variables.
+
+```bash
+mkdir /foo
+
+readonly MESSAGE='Hello!'
+echo "${MESSAGE}" > /foo/bar.txt
+```
+
+This rule intentionally deviates from Google’s bash style guide, which [suggests to declare constant variables at the top of the file](https://google.github.io/styleguide/shellguide.html#constants-and-environment-variable-names). We do this since we value code cohesion higher than having all constant variable declarations in one place.
 
 ### Here documents
 

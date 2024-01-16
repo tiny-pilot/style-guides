@@ -220,7 +220,9 @@ EOF
 
 TARGET_FILE=''
 FORCE='false'
-while [[ "$#" -gt 0 ]]; do
+# TODO: Change the 2 to the minimum number of valid arguments the script
+# expects.
+while [[ "$#" -gt 2 ]]; do
   case "$1" in
     --help)
       print_help

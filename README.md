@@ -203,6 +203,18 @@ Make exceptions for flags where the short flags are extremely common and the lon
 
 * `mkdir -p`
 
+### Named flags vs. positional arguments
+
+There is no universal rule that’s always applicable, but we try to follow these guidelines:
+
+* Positional arguments:
+  * For mandatory values
+  * For “input”-like values, for example the data or files that the script should act on
+* Named flags (e.g. `--flag value`):
+  * For optional values
+  * For “settings”-like or configurational values, which determine *how* the script should do something
+  * For helping to disambiguate multiple input values, which are otherwise hard to tell apart as positional arguments
+
 ### Parsing command-line flags
 
 In the same way that we prefer to use long flag names, we also prefer to implement long flag names.

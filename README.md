@@ -205,7 +205,7 @@ Make exceptions for flags where the short flags are extremely common and the lon
 
 ### Named flags vs. positional arguments
 
-There is no universal rule that’s always applicable, but we try to follow these guide lines for orientation:
+There is no universal rule that’s always applicable, but we try to follow these guidelines:
 
 * Positional arguments:
   * For mandatory values

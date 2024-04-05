@@ -170,7 +170,7 @@ This rule intentionally deviates from Google’s bash style guide, which [sugges
 
 ### Arithmetic / Numerical comparisons
 
-For numerical comparisons, we use the `(( ... ))` form with `<`/`>` operands, rather than the `[[ ... ]]` form with `-lt` and `-gt`.
+For numerical comparisons, we use the `(( ... ))` form with `<` or `>` operands, rather than the `[[ ... ]]` form with `-lt` or `-gt`.
 
 ```bash
 # GOOD - uses (( ... ))

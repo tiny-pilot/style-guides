@@ -168,6 +168,18 @@ echo "${MESSAGE}" > /foo/bar.txt
 
 This rule intentionally deviates from Google’s bash style guide, which [suggests to declare constant variables at the top of the file](https://google.github.io/styleguide/shellguide.html#constants-and-environment-variable-names). We do this since we value code cohesion higher than having all constant variable declarations in one place.
 
+### Arithmetic / Numerical comparisons
+
+For numerical comparisons, we use the `(( ... ))` form with `<` or `>` operands, rather than the `[[ ... ]]` form with `-lt` or `-gt`.
+
+```bash
+# GOOD - uses (( ... ))
+if (( "$#" > 2 )); then # ...
+
+# BAD - uses [[ ... ]]
+if [[ "$#" -gt 2 ]]; then # ...
+```
+
 ### Here documents
 
 Here-documents should use `EOF` as the delimiting identifier label.
@@ -232,7 +244,7 @@ EOF
 
 TARGET_FILE=''
 FORCE='false'
-while [[ "$#" -gt 0 ]]; do
+while (( "$#" > 0 )); do
   case "$1" in
     --help)
       print_help

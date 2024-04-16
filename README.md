@@ -303,8 +303,8 @@ There's no need to implement short flag names because our scripts are either bei
 * Error messages don't have prefixes like "ERROR:" or "WARNING:".
 * Use sentence casing to capitalize error messages.
 * Omit trailing punctuation on error messages.
-* Avoid printing the help text on every error.
-  * Instead, provide a short helpful error message and instruct users to use the command-line `--help` flag for more information.
+* Avoid printing the help text when an error occurs.
+  * For input errors, provide a short helpful error message and instruct users to use the command-line `--help` flag for more information.
 
   For example:
   ```bash
@@ -312,9 +312,12 @@ There's no need to implement short flag names because our scripts are either bei
   >&2 echo 'Missing environment variable: GITHUB_TOKEN'
   >&2 print_help
 
-  # GOOD - Keeps error message visible.
+  # GOOD - Keeps the error message visible and directs user to use --help flag.
   >&2 echo 'Missing environment variable: GITHUB_TOKEN'
   >&2 echo "Use '${0##*/} --help' for more information"
+
+  # GOOD - A temporary error occurred with no further information needed.
+  >&2 echo 'Failed to establish network connection. Try again later'
   ```
 
 ## JavaScript

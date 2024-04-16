@@ -287,6 +287,8 @@ if [[ -z "${TARGET_FILE}" ]]; then
 fi
 ```
 
+In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
+
 There's no need to implement short flag names because our scripts are either being called by other scripts, internally, or users are copy/pasting commands from examples we've given them. Either way, we prefer to see long flag names being used.
 
 ### Error messages

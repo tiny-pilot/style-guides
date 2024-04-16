@@ -229,7 +229,7 @@ There is no universal rule that’s always applicable, but we try to follow thes
 
 ### Parsing command-line arguments/flags
 
-In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
+The code snippet below serves as a blueprint for how to parse command-line arguments/flags and structuring help text. The code can be used as a starting point for new shell scripts.
 
 ```bash
 print_help() {

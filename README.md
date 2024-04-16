@@ -227,52 +227,67 @@ There is no universal rule that’s always applicable, but we try to follow thes
   * For “settings”-like or configurational values, which determine *how* the script should do something
   * For helping to disambiguate multiple input values, which are otherwise hard to tell apart as positional arguments
 
-### Parsing command-line flags
+### Parsing command-line arguments/flags
 
-In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
+The code snippet below serves as a blueprint for how to parse command-line arguments/flags and structuring help text. The code can be used as a starting point for new shell scripts.
 
 ```bash
 print_help() {
   cat <<EOF
-Usage: ${0##*/} [--help] [--force] --target-file TARGET_FILE
-Creates an empty file at the target path.
-  --help                      Display this help and exit.
-  --force                     Overwrite the target file, if it already exists.
-  --target-file TARGET_FILE   The target path of the empty file.
+Usage: ${0##*/} [--help] [--force] [--contents FILE_CONTENTS] TARGET_FILE
+Creates a file at the target path.
+  --help                   Optional. Display this help and exit.
+  --force                  Optional. Overwrite the target file, if it already exists.
+  --contents FILE_CONTENTS Optional. The desired contents of the target file.
+  TARGET_FILE              The target path of the file.
 EOF
 }
 
-TARGET_FILE=''
-FORCE='false'
+# Parse command-line arguments.
+POSITIONAL_ARGS=()
 while (( "$#" > 0 )); do
   case "$1" in
     --help)
       print_help
       exit
       ;;
-    --target-file)
-      TARGET_FILE="$2"
-      shift # For flag name.
-      shift # For flag value.
-      ;;
     --force)
       FORCE='true'
       shift # For flag name.
       ;;
-   *)
+    --contents)
+      if (( "$#" < 2 )); then
+        shift
+        break
+      fi
+      FILE_CONTENTS="$2"
+      shift # For flag name.
+      shift # For flag value.
+      ;;
+   --*|-*)
+      >&2 echo "Unknown flag: $1"
       >&2 print_help
       exit 1
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # Save positional argument.
+      shift
+      ;;
   esac
 done
-readonly TARGET_FILE
-readonly FORCE
+readonly POSITIONAL_ARGS
+readonly FORCE="${FORCE:-false}"
+readonly FILE_CONTENTS="${FILE_CONTENTS:-}"
+readonly TARGET_FILE="${POSITIONAL_ARGS[0]:-}"
 
 if [[ -z "${TARGET_FILE}" ]]; then
-  >&2 echo 'Missing parameter: TARGET_FILE'
+  >&2 echo 'Missing argument: TARGET_FILE'
   >&2 print_help
   exit 1
 fi
 ```
+
+In the same way that we prefer to use long flag names, we also prefer to implement long flag names.
 
 There's no need to implement short flag names because our scripts are either being called by other scripts, internally, or users are copy/pasting commands from examples we've given them. Either way, we prefer to see long flag names being used.
 

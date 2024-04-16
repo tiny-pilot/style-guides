@@ -266,7 +266,7 @@ while (( "$#" > 0 )); do
       ;;
    --*|-*)
       >&2 echo "Unknown flag: $1"
-      >&2 echo "Use '${0##*/} --help' for more information"
+      >&2 echo "Use the '--help' flag for more information"
       exit 1
       ;;
     *)
@@ -282,7 +282,7 @@ readonly TARGET_FILE="${POSITIONAL_ARGS[0]:-}"
 
 if [[ -z "${TARGET_FILE}" ]]; then
   >&2 echo 'Missing argument: TARGET_FILE'
-  >&2 echo "Use '${0##*/} --help' for more information"
+  >&2 echo "Use the '--help' flag for more information"
   exit 1
 fi
 ```
@@ -314,7 +314,7 @@ There's no need to implement short flag names because our scripts are either bei
 
   # GOOD - Keeps the error message visible and directs user to use --help flag.
   >&2 echo 'Missing environment variable: GITHUB_TOKEN'
-  >&2 echo "Use '${0##*/} --help' for more information"
+  >&2 echo "Use the '--help' flag for more information"
 
   # GOOD - A temporary error occurred with no further information needed.
   >&2 echo 'Failed to establish network connection. Try again later'

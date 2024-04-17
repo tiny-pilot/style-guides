@@ -266,7 +266,7 @@ while (( "$#" > 0 )); do
       ;;
    --*|-*)
       >&2 echo "Unknown flag: $1"
-      >&2 print_help
+      >&2 echo "Use the '--help' flag for more information"
       exit 1
       ;;
     *)
@@ -282,7 +282,7 @@ readonly TARGET_FILE="${POSITIONAL_ARGS[0]:-}"
 
 if [[ -z "${TARGET_FILE}" ]]; then
   >&2 echo 'Missing argument: TARGET_FILE'
-  >&2 print_help
+  >&2 echo "Use the '--help' flag for more information"
   exit 1
 fi
 ```
@@ -294,13 +294,31 @@ There's no need to implement short flag names because our scripts are either bei
 ### Error messages
 
 * Print error messages to stderr.
-* Error messages don't have any prefixes like "ERROR:" or "WARNING:".
+  * Begin by redirecting a command's output to `stderr`, that way it's immediately clear where the output is being written.
+
+  For example:
+  ```bash
+  >&2 echo 'Mount mode must be either FLASH or CDROM'
+  ```
+* Error messages don't have prefixes like "ERROR:" or "WARNING:".
 * Use sentence casing to capitalize error messages.
 * Omit trailing punctuation on error messages.
+* Avoid printing the help text when an error occurs.
+  * For input errors, provide a short helpful error message and instruct users to use the command-line `--help` flag for more information.
 
-```bash
-echo 'Mount mode must be either FLASH or CDROM' >&2
-```
+  For example:
+  ```bash
+  # BAD - Buries the error message with help text.
+  >&2 echo 'Missing environment variable: GITHUB_TOKEN'
+  >&2 print_help
+
+  # GOOD - Keeps the error message visible and directs user to use --help flag.
+  >&2 echo 'Missing environment variable: GITHUB_TOKEN'
+  >&2 echo "Use the '--help' flag for more information"
+
+  # GOOD - A temporary error occurred with no further information needed.
+  >&2 echo 'Failed to establish network connection. Try again later'
+  ```
 
 ## JavaScript
 
